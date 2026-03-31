@@ -1,6 +1,6 @@
 # Second Most Independent File: Depends on Transaction.py File
 
-from transaction import Transaction
+from server.transaction import Transaction
 # Import Decimal so totals also stay precise
 from decimal import Decimal
 

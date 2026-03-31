@@ -4,9 +4,9 @@
 # 'Inspired by new friend Cannan Murphy.
 
 # Import your modules
-from transaction import Transaction
-from budget_manager import BudgetManager
-from utils import get_amount_input, get_non_empty_input, get_transaction_type
+from server.transaction import Transaction
+from server.budget_manager import BudgetManager
+from server.utils import get_amount_input, get_non_empty_input, get_transaction_type
 
 2
 # Function to collect user input and create a Transaction
