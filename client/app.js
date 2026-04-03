@@ -162,7 +162,7 @@ function getMonthlyIncome(list) {
     .reduce((sum, tx) => sum + tx.amount_cents, 0);
 }
 
-
+ 
 
 //*********************************************** */
 
