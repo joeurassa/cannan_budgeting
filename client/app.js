@@ -1,9 +1,62 @@
 const STORAGE_KEY = "budget_transactions_v1";
+const THEME_KEY = "budget_theme_v1";
+
+
+function getMoonIcon() {
+  return `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+    </svg>
+  `;
+}
+
+function getSunIcon() {
+  return `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="4"></circle>
+      <path d="M12 2v2.2"></path>
+      <path d="M12 19.8V22"></path>
+      <path d="M4.93 4.93l1.56 1.56"></path>
+      <path d="M17.51 17.51l1.56 1.56"></path>
+      <path d="M2 12h2.2"></path>
+      <path d="M19.8 12H22"></path>
+      <path d="M4.93 19.07l1.56-1.56"></path>
+      <path d="M17.51 6.49l1.56-1.56"></path>
+    </svg>
+  `;
+}
+
+function applyTheme(theme) {
+  if (theme === "light") {
+    document.body.classList.add("light-mode");
+    els.themeIcon.innerHTML = getSunIcon();
+    els.themeToggle.setAttribute("aria-label", "Switch to dark mode");
+  } else {
+    document.body.classList.remove("light-mode");
+    els.themeIcon.innerHTML = getMoonIcon();
+    els.themeToggle.setAttribute("aria-label", "Switch to light mode");
+  }
+}
+
+function loadTheme() {
+  const savedTheme = localStorage.getItem(THEME_KEY) || "dark";
+  applyTheme(savedTheme);
+}
+
+function toggleTheme() {
+  const isLight = document.body.classList.contains("light-mode");
+  const nextTheme = isLight ? "dark" : "light";
+  localStorage.setItem(THEME_KEY, nextTheme);
+  applyTheme(nextTheme);
+}
+
+
 
 const els = {
   form: document.getElementById("txForm"),
   type: document.getElementById("type"),
   amount: document.getElementById("amount"),
+  date: document.getElementById("date"),
   category: document.getElementById("category"),
   description: document.getElementById("description"),
   error: document.getElementById("formError"),
@@ -12,6 +65,8 @@ const els = {
   expenseTotal: document.getElementById("expenseTotal"),
   balanceTotal: document.getElementById("balanceTotal"),
   clearAll: document.getElementById("clearAll"),
+  themeToggle: document.getElementById("themeToggle"),
+  themeIcon: document.getElementById("themeIcon"),
 };
 
 function loadTransactions() {
@@ -95,6 +150,7 @@ function render() {
   const list = loadTransactions();
   const totals = computeTotals(list);
 
+  els.themeToggle.addEventListener("click", toggleTheme);
   els.incomeTotal.textContent = formatMoneyFromCents(totals.income);
   els.expenseTotal.textContent = formatMoneyFromCents(totals.expense);
   els.balanceTotal.textContent = formatMoneyFromCents(totals.balance);
@@ -215,4 +271,6 @@ els.clearAll.addEventListener("click", () => {
   render();
 });
 
+
+loadTheme();
 render();

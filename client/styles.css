@@ -1,12 +1,53 @@
 :root {
   --bg: #0b0c10;
   --card: #11131a;
+  --surface: #0e1016;
   --text: #e8e8ea;
   --muted: #a3a7b3;
   --border: #232634;
   --error: #ff6b6b;
   --radius: 14px;
+  --primary-bg: #1b2a4a;
+  --primary-border: #2b3f6d;
+  --danger-bg: #3a1212;
+  --danger-border: #612020;
 }
+
+body.light-mode {
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --surface: #f0f3f9;
+  --text: #151821;
+  --muted: #5b6475;
+  --border: #d7deea;
+  --error: #c0392b;
+  --primary-bg: #dfe9ff;
+  --primary-border: #b8c9f3;
+  --danger-bg: #ffe4e1;
+  --danger-border: #f0b4ab;
+}
+
+.theme-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.theme-btn:hover svg{
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+
+.theme-btn:hover {
+  transform: scale(1.05);
+}
+
+
 
 * { box-sizing: border-box; }
 body {
@@ -46,7 +87,7 @@ input, select {
   padding: 10px 12px;
   border-radius: 10px;
   border: 1px solid var(--border);
-  background: #0e1016;
+  background: var(--surface);
   color: var(--text);
   outline: none;
 }
@@ -64,7 +105,7 @@ input:focus, select:focus { border-color: #3a3f55; }
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 12px;
-  background: #0e1016;
+  background: var(--surface);
 }
 .label { font-size: 12px; color: var(--muted); }
 .value { font-size: 18px; margin-top: 6px; }
@@ -92,7 +133,7 @@ th { color: var(--muted); font-weight: 600; }
   padding: 10px 12px;
   border-radius: 10px;
   border: 1px solid var(--border);
-  background: #0e1016;
+  background: var(--surface);
   color: var(--text);
   cursor: pointer;
 }
