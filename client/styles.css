@@ -11,6 +11,8 @@
   --primary-border: #2b3f6d;
   --danger-bg: #3a1212;
   --danger-border: #612020;
+  --primary-bg:#1b2a4a;
+  --primary-border:#2b3f6d;
 }
 
 body.light-mode {
@@ -55,6 +57,7 @@ body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container { width: min(1100px, calc(100% - 32px)); margin: 0 auto; }
@@ -137,11 +140,15 @@ th { color: var(--muted); font-weight: 600; }
   color: var(--text);
   cursor: pointer;
 }
-.btn.primary { background: #1b2a4a; border-color: #2b3f6d; }
-.btn.danger { background: #3a1212; border-color: #612020; }
+.btn.primary { 
+  background: var(--primary-bg);
+  border-color: var(--primary-border);
+  color: var(--text);
+}
+.btn.danger { background: #3a1212; border-color: #612020;}
 .btn.outline { background: transparent; }
 
 @media (max-width: 900px) {
-  .grid { grid-template-columns: 1fr; }
-  .cards { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: 1fr;}
+  .cards { grid-template-columns: 1fr;}
 }
